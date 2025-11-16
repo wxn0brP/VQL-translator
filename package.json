@@ -13,7 +13,8 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"start": "bun run src/index.ts"
+		"start": "bun run src/index.ts",
+		"build": "bun build --outdir=public/dist public/script.ts --sourcemap --minify"
 	},
 	"devDependencies": {
 		"@types/bun": "*",

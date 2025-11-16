@@ -1,8 +1,10 @@
 {
-	"cmd": "tsc --noEmit && bun run src/index.ts",
+	"cmd": "tsc --noEmit && bun run build",
 	"watch": [
-		"src"
+		"src",
+		"public/script.ts"
 	],
+	"server": 41414,
 	"restart_cmd": "clear",
 	"events": {
 		"rs": "clear"
