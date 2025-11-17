@@ -10,37 +10,58 @@
 </head>
 
 <body>
-    <header>
-        <h1>VQL Translator</h1>
-        <p>Convert SQL queries to VQL</p>
-        <p>Note: it may not be 100% accurate</p>
-    </header>
+    <div id="app">
+        <header>
+            <h1>VQL Translator</h1>
+            <p class="note">A simple tool to convert SQL queries into VQL</p>
+        </header>
 
-    <main>
-        <div class="input-section">
-            <label for="sql-input">Enter SQL Query:</label>
-            <textarea id="sql-input">SELECT * FROM users WHERE id = 1</textarea>
+        <main>
+            <div class="input-section">
+                <div class="card input-card">
+                    <label for="sql-input">SQL Query</label>
+                    <textarea id="sql-input"
+                        placeholder="e.g., SELECT * FROM users WHERE id = 1">SELECT * FROM users WHERE id = 1</textarea>
 
-            <label for="db-name">Database Name:</label>
-            <input type="text" id="db-name" value="db1" placeholder="Enter database name">
+                    <label for="db-name">Database Name</label>
+                    <input type="text" id="db-name" value="db1">
 
-            <button id="translate-btn">Translate to VQL</button>
-        </div>
-
-        <div class="output-section">
-            <h3>VQL Output:</h3>
-            <div id="vql-result" class="result-box">
-                <button id="copy-vql" title="Copy to clipboard">💜</button>
-                <pre id="vql-object">Your VQL object will appear here</pre>
+                    <div class="card-footer">
+                        <button id="translate-btn">Translate</button>
+                    </div>
+                </div>
             </div>
 
-            <h3>VQL String</h3>
-            <div id="vql-string-result" class="result-box">
-                <button id="copy-string" title="Copy to clipboard">💜</button>
-                <pre id="vql-string">Your VQL string will appear here</pre>
+            <div class="output-section">
+                <div id="output-card" class="card output-card hidden">
+                    <div class="tab-header">
+                        <button class="tab-link active" data-tab="vql-object-tab">VQL Object</button>
+                        <button class="tab-link" data-tab="vql-string-tab">VQL String</button>
+                    </div>
+                    <div class="tab-content">
+                        <div id="vql-object-tab" class="tab-pane active">
+                            <div class="result-box">
+                                <pre id="vql-object"></pre>
+                                <button id="copy-vql" class="copy-btn" title="Copy to clipboard">
+                                    💜
+                                </button>
+                                <div class="copy-tooltip">Copied!</div>
+                            </div>
+                        </div>
+                        <div id="vql-string-tab" class="tab-pane">
+                            <div class="result-box">
+                                <pre id="vql-string"></pre>
+                                <button id="copy-string" class="copy-btn" title="Copy to clipboard">
+                                    💜
+                                </button>
+                                <div class="copy-tooltip">Copied!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
     <script type="module" src="dist/script.js"></script>
 </body>
