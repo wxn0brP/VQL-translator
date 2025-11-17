@@ -83,7 +83,11 @@ export function convert_VQLR_to_VQLS(res: VQL_Query) {
     renameKeys(op, "options", "o");
     renameKeys(op, "updater", "u");
     if (op.searchOpts?.select) {
-        op.select = op.searchOpts.select;
+        // @ts-ignore
+        op.select = op.searchOpts.select.reduce((obj, key) => {
+            obj[key] = 1;
+            return obj;
+        });
         delete op.searchOpts.select;
     }
     renameKeys(op, "select", "e");
