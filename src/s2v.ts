@@ -85,7 +85,7 @@ export function convert_VQLR_to_VQLS(res: VQL_Query) {
 
     const args = flattenObject(op);
 
-    string += `${baseOp} ${collection} ${args}`;
+    string += `${res.db} ${collection} ${args}`;
     return string;
 }
 
