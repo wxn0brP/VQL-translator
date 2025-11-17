@@ -48,6 +48,8 @@ function flattenObject(obj: any, prefix: string = ""): string {
 
             if (typeof value === "object" && value !== null && !Array.isArray(value)) {
                 pairs.push(...flattenObject(value, fullKey).split(" ").filter(s => s.length > 0));
+            } else if (Array.isArray(value)) {
+                pairs.push(`${fullKey}=${JSON.stringify(value)}`);
             } else {
                 pairs.push(`${fullKey}=${value}`);
             }
