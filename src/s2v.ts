@@ -82,6 +82,11 @@ export function convert_VQLR_to_VQLS(res: VQL_Query) {
     renameKeys(op, "data", "d");
     renameKeys(op, "options", "o");
     renameKeys(op, "updater", "u");
+    if (op.searchOpts?.select) {
+        op.select = op.searchOpts.select;
+        delete op.searchOpts.select;
+    }
+    renameKeys(op, "select", "e");
 
     const args = flattenObject(op);
 
