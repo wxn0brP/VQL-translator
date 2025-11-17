@@ -36,7 +36,7 @@
 		}
 	},
 	"dependencies": {
-		"@wxn0brp/db-string-query": "^0.0.8",
+		"@wxn0brp/db-string-query": "github:wxn0brP/ValtheraDB-string-query#dist",
 		"@wxn0brp/vql-client": "^0.2.4"
 	}
 }

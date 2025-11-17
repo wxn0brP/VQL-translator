@@ -1,6 +1,6 @@
 import SQLParser from "@wxn0brp/db-string-query/sql/index";
 import { ValtheraQuery } from "@wxn0brp/db-string-query/types";
-import { VQL_Query, VQLUQ } from "@wxn0brp/vql-client/vql";
+import { VQL_Query, VQL_Query_Relation, VQLUQ } from "@wxn0brp/vql-client/vql";
 
 const sqlParser = new SQLParser();
 
@@ -62,7 +62,7 @@ function flattenObject(obj: any, prefix: string = ""): string {
 export function convert_VQLR_to_VQLS(res: VQL_Query) {
     let string = "";
     if (!("d" in res)) {
-        throw new Error("Not implemented yet");
+        return "Relation cannot be converted to VQLS";
     }
 
     const d = res.d;
@@ -105,9 +105,25 @@ function renameKeys(obj: any, oldKey: string, newKey: string): any {
     delete obj[oldKey];
 }
 
+function convertRelationVql(res: ValtheraQuery): VQL_Query_Relation {
+    const { args } = res;
+    return {
+        r: {
+            path: args[0],
+            search: args[1],
+            relations: args[2],
+            options: args[3],
+            select: args[4],
+            many: true
+        }
+    }
+}
+
 export function s2v(sql: string, dbName: string, string = false): VQLUQ {
-    const dbData = sqlParser.parse(sql);
-    const vqluq = convertDbToVql(dbData, dbName);
+    const dbData = sqlParser.parse(sql, { defaultDbKey: dbName });
+    const vqluq = dbData.method === "relation-find" ?
+        convertRelationVql(dbData) :
+        convertDbToVql(dbData, dbName);
 
     return string ? convert_VQLR_to_VQLS(vqluq) : vqluq;
 }
