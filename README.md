@@ -11,17 +11,17 @@ This library converts standard SQL queries into VQL format, which can be used wi
 ## Usage
 
 ```typescript
-import { s2v, convert_VQLR_to_VQLS } from "@wxn0brp/vql-translator";
+import { SQL_TO_VQL } from "@wxn0brp/vql-translator";
 
 const sql = "SELECT * FROM users WHERE id = 1";
 const dbName = "db";
 
 // Get VQL object
-const vql = s2v(sql, dbName);
+const vql = SQL_TO_VQL(sql, dbName);
 console.log(vql);
 
 // Get VQL string representation
-const vqlString = s2v(sql, dbName, true);
+const vqlString = SQL_TO_VQL(sql, dbName, true);
 console.log(vqlString);
 ```
 
@@ -58,4 +58,4 @@ MIT [License](LICENSE)
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and create a pull request.
+Contributions are welcome!

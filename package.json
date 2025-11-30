@@ -13,11 +13,16 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"start": "bun run src/index.ts",
-		"build": "bun build --outdir=public/dist public/script.ts --sourcemap --minify"
+		"build": "tsc && tsc-alias",
+		"build-public": "bun build --outdir=public/dist public/script.ts --sourcemap --minify"
+	},
+	"dependencies": {
+		"@wxn0brp/db-string-query": "^0.0.9",
+		"@wxn0brp/vql-client": "^0.2.4"
 	},
 	"devDependencies": {
 		"@types/bun": "*",
+		"tsc-alias": "*",
 		"typescript": "*"
 	},
 	"files": [
@@ -34,9 +39,5 @@
 			"import": "./dist/*.js",
 			"default": "./dist/*.js"
 		}
-	},
-	"dependencies": {
-		"@wxn0brp/db-string-query": "github:wxn0brP/ValtheraDB-string-query#dist",
-		"@wxn0brp/vql-client": "^0.2.4"
 	}
 }

@@ -16,19 +16,17 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
+      - name: Checkout code
+        uses: actions/checkout@v6
 
-      - name: Install Bun
-        shell: bash
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo "$HOME/.bun/bin" >> $GITHUB_PATH
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
       - name: Build project
         run: |
           bun install
-          bun run build
+          bun run build-public
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
