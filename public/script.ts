@@ -1,4 +1,5 @@
-import { convert_VQLR_to_VQLS, s2v } from "#s2v";
+import { SQL_TO_VQL } from "#index";
+import { convert_VQLR_to_VQLS } from "#VQLR_to_VQLS";
 
 const sqlInput = document.querySelector<HTMLTextAreaElement>("#sql-input");
 const dbNameInput = document.querySelector<HTMLInputElement>("#db-name");
@@ -39,7 +40,7 @@ function translate() {
     }
 
     try {
-        const vqlObject = s2v(sql, dbName, false) as any;
+        const vqlObject = SQL_TO_VQL(sql, dbName, false) as any;
         _vqlObject = JSON.stringify(vqlObject, null, 2);
         vqlObjectOutput.textContent = _vqlObject;
 

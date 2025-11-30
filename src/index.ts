@@ -1,8 +1,15 @@
-import { convert_VQLR_to_VQLS, s2v } from "./s2v";
+import SQLParser from "@wxn0brp/db-string-query/sql/index";
+import { VQLUQ } from "@wxn0brp/vql-client/vql";
+import { convertDbToVql, convertRelationVql } from "./dbToVQL";
+import { convert_VQLR_to_VQLS } from "./VQLR_to_VQLS";
 
-const sql = `SELECT * FROM users WHERE id = 1`;
-const db = "db1";
+const sqlParser = new SQLParser();
 
-const vql = s2v(sql, db, false);
-console.dir(vql, { depth: null });
-console.log(convert_VQLR_to_VQLS(vql as any));
+export function SQL_TO_VQL(sql: string, dbName: string, string = false): VQLUQ {
+    const dbData = sqlParser.parse(sql, { defaultDbKey: dbName });
+    const vqluq = dbData.method === "relation-find" ?
+        convertRelationVql(dbData) :
+        convertDbToVql(dbData, dbName);
+
+    return string ? convert_VQLR_to_VQLS(vqluq) : vqluq;
+}
