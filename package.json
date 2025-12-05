@@ -18,7 +18,7 @@
 	},
 	"dependencies": {
 		"@wxn0brp/db-string-query": ">=0.0.9",
-		"@wxn0brp/vql-client": ">=0.2.5"
+		"@wxn0brp/vql-client": ">=0.2.6"
 	},
 	"devDependencies": {
 		"@types/bun": "*",

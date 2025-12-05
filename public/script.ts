@@ -1,4 +1,4 @@
-import { SQL_TO_VQL } from "#index";
+import { SQL_TO_VQL, SV_Ref } from "#index";
 import { convert_VQLR_to_VQLS } from "#VQLR_to_VQLS";
 
 const sqlInput = document.querySelector<HTMLTextAreaElement>("#sql-input");
@@ -40,13 +40,19 @@ function translate() {
     }
 
     try {
-        const vqlObject = SQL_TO_VQL(sql, dbName, false) as any;
+        const ref: SV_Ref = {};
+        const vqlObject = SQL_TO_VQL(sql, dbName, false, ref) as any;
+        console.log(ref);
+        console.log(vqlObject);
+
         _vqlObject = JSON.stringify(vqlObject, null, 2);
         vqlObjectOutput.textContent = _vqlObject;
 
         const vqlString = convert_VQLR_to_VQLS(vqlObject);
         _vqlString = vqlString;
         vqlStringOutput.textContent = _vqlString;
+        console.log(vqlString);
+        console.log("----");
 
         outputCard.classList.remove("hidden");
     } catch (error) {
