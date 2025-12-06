@@ -17,8 +17,8 @@
 		"build-public": "bun build --outdir=public/dist public/script.ts --sourcemap --minify"
 	},
 	"dependencies": {
-		"@wxn0brp/db-string-query": ">=0.0.9",
-		"@wxn0brp/vql-client": ">=0.2.6"
+		"@wxn0brp/db-string-query": ">=0.0.10",
+		"@wxn0brp/vql-client": ">=0.2.7"
 	},
 	"devDependencies": {
 		"@types/bun": "*",
