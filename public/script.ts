@@ -97,7 +97,6 @@ copyVqlBtn.addEventListener("click", () => {
     if (!_vqlObject) return;
     navigator.clipboard.writeText(_vqlObject);
     showCopyFeedback(copyVqlBtn);
-
 });
 
 copyStringBtn.addEventListener("click", () => {

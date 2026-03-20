@@ -1,0 +1,17 @@
+{
+    cmd: "tsc --noEmit && bun run build-public",
+    watch: [
+        "src",
+        "public/script.ts",
+    ],
+    server: 41414,
+    server_map: {
+        dir: {
+            "/": "public"
+        }
+    },
+    restart_cmd: "clear",
+    events: {
+        rs: "clear",
+    },
+}

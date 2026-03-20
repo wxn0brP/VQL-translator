@@ -1,49 +1,42 @@
 import { ValtheraQuery } from "@wxn0brp/db-string-query/types";
 import { VQL_Query, VQL_Query_Relation } from "@wxn0brp/vql-client/vql";
+import { renameKeys } from "./utils";
 
 export function convertDbToVql(res: ValtheraQuery, dbName: string): VQL_Query {
-    const { args, method } = res;
-    const collection = args[0];
-    const baseStructure = { db: dbName, d: {} };
+    const { query, method } = res;
 
-    const methodMap: { [key: string]: any } = {
-        find: {
-            options: args[2],
-            searchOpts: args[3]
-        },
-        findOne: {
-            searchOpts: args[2]
-        },
-        update: {
-            updater: args[2]
-        },
-        updateOne: {
-            updater: args[2]
-        },
-        add: {
-            data: args[1]
-        }
+    const baseStructure = {
+        db: dbName,
+        d: {}
     };
+
+    renameKeys(query, "dbFindOpts", "options");
+    renameKeys(query, "findOpts", "searchOpts");
+
+    Object.keys(query).forEach(key => {
+        if (key === "search") return;
+        const value = query[key];
+        if (typeof value === "object" && Object.keys(value).length === 0) {
+            delete query[key];
+        }
+    });
 
     baseStructure.d = {
-        [method]: methodMap[method] || {}
+        [method]: query
     };
-
-    baseStructure.d[method].collection = collection;
-    if (method !== "add") baseStructure.d[method].search = args[1];
 
     return baseStructure as VQL_Query;
 }
 
 export function convertRelationVql(res: ValtheraQuery): VQL_Query_Relation {
-    const { args } = res;
+    const { relation } = res;
     return {
         r: {
-            path: args[0],
-            search: args[1],
-            relations: args[2],
-            options: args[3],
-            select: args[4],
+            path: relation[0],
+            search: relation[1],
+            relations: relation[2],
+            options: relation[3],
+            select: relation[4],
             many: true
         }
     }
