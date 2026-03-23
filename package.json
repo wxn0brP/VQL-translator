@@ -1,44 +1,44 @@
 {
-	"name": "@wxn0brp/vql-translator",
-	"version": "0.0.3",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"description": "",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/wxn0brP/VQL-translator.git"
-	},
-	"homepage": "https://github.com/wxn0brP/VQL-translator",
-	"author": "wxn0brP",
-	"license": "MIT",
-	"type": "module",
-	"scripts": {
-		"build": "tsc && tsc-alias",
-		"build-public": "bun build --outdir=public/dist public/script.ts --sourcemap --minify"
-	},
-	"dependencies": {
-		"@wxn0brp/db-string-query": ">=0.100.0",
-		"@wxn0brp/vql-client": ">=0.2.9"
-	},
-	"devDependencies": {
-		"@types/bun": "*",
-		"@wxn0brp/db-core": "^0.10.0",
-		"tsc-alias": "*",
-		"typescript": "*"
-	},
-	"files": [
-		"dist"
-	],
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js",
-			"default": "./dist/index.js"
-		},
-		"./*": {
-			"types": "./dist/*.d.ts",
-			"import": "./dist/*.js",
-			"default": "./dist/*.js"
-		}
-	}
+    "name": "@wxn0brp/vql-translator",
+    "version": "0.0.3",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "description": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wxn0brP/VQL-translator.git"
+    },
+    "homepage": "https://github.com/wxn0brP/VQL-translator",
+    "author": "wxn0brP",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "build": "tsc && tsc-alias",
+        "build-public": "bun build --outdir=public/dist public/script.ts --sourcemap --minify"
+    },
+    "dependencies": {
+        "@wxn0brp/db-string-query": ">=0.100.0",
+        "@wxn0brp/vql-client": ">=0.2.9"
+    },
+    "devDependencies": {
+        "@types/bun": "*",
+        "@wxn0brp/db-core": "^0.10.0",
+        "tsc-alias": "*",
+        "typescript": "^5"
+    },
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./*": {
+            "types": "./dist/*.d.ts",
+            "import": "./dist/*.js",
+            "default": "./dist/*.js"
+        }
+    }
 }
