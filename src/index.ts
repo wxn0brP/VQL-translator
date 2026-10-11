@@ -7,16 +7,24 @@ import { ValtheraQuery } from "@wxn0brp/db-string-query/types";
 const sqlParser = new SQLParser();
 
 export interface SV_Ref {
-    dbData?: ValtheraQuery;
+	dbData?: ValtheraQuery;
 }
 
-export function SQL_TO_VQL(sql: string, dbName: string, string = false, ref: SV_Ref = {}): VQLUQ {
-    const dbData = sqlParser.parse(sql, { defaultDbKey: dbName });
-    ref.dbData = dbData;
+export function SQL_TO_VQL(
+	sql: string,
+	dbName: string,
+	string = false,
+	ref: SV_Ref = {},
+): VQLUQ {
+	const dbData = sqlParser.parse(sql, {
+		defaultDbKey: dbName,
+	});
+	ref.dbData = dbData;
 
-    const vqluq = dbData.method === "relation-find" ?
-        convertRelationVql(dbData) :
-        convertDbToVql(dbData, dbName);
+	const vqluq =
+		dbData.method === "relation-find"
+			? convertRelationVql(dbData)
+			: convertDbToVql(dbData, dbName);
 
-    return string ? convert_VQLR_to_VQLS(vqluq) : vqluq;
+	return string ? convert_VQLR_to_VQLS(vqluq) : vqluq;
 }
