@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/wxn0brP/VQL-translator/compare/v0.0.4...v0.0.5) (2026-10-28)
+
+
+### Features
+
+* improve ([1268b5f](https://github.com/wxn0brP/VQL-translator/commit/1268b5ffd8633d2f71db75f1839bcf336033db72))
+
 ### [0.0.4](https://github.com/wxn0brP/VQL-translator/compare/v0.0.3...v0.0.4) (2026-06-11)
 
 ### [0.0.3](https://github.com/wxn0brP/VQL-translator/compare/v0.0.2...v0.0.3) (2026-03-20)
