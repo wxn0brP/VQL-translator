@@ -1,0 +1,41 @@
+{
+  "name": "@wxn0brp/vql-translator",
+  "version": "0.0.5",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxn0brP/VQL-translator.git"
+  },
+  "homepage": "https://github.com/wxn0brP/VQL-translator",
+  "author": "wxn0brP",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@wxn0brp/db-string-query": "^0.120.2",
+    "@wxn0brp/vql-client": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/bun": "*",
+    "@wxn0brp/biome": "*",
+    "@wxn0brp/db-core": "^0.12.14",
+    "tsc-alias": "*",
+    "typescript": "*"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "default": "./dist/*.js"
+    }
+  }
+}
