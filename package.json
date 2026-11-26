@@ -23,7 +23,7 @@
     "devDependencies": {
         "@types/bun": "*",
         "@wxn0brp/biome": "*",
-        "@wxn0brp/db-core": "^0.12.14",
+        "@wxn0brp/db-core": "^0.13.0",
         "tsc-alias": "*",
         "typescript": "*"
     },
