@@ -17,13 +17,13 @@
         "build-public": "bun build --outdir=public/dist public/script.ts --sourcemap --minify"
     },
     "dependencies": {
-        "@wxn0brp/db-string-query": "^0.120.2",
-        "@wxn0brp/vql-client": "^0.3.0"
+        "@wxn0brp/db-string-query": "^0.130.0",
+        "@wxn0brp/vql-client": "^0.3.1"
     },
     "devDependencies": {
         "@types/bun": "*",
         "@wxn0brp/biome": "*",
-        "@wxn0brp/db-core": "^0.12.14",
+        "@wxn0brp/db-core": "^0.13.0",
         "tsc-alias": "*",
         "typescript": "*"
     },

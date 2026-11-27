@@ -1,6 +1,28 @@
 import { VQL_Query } from "@wxn0brp/vql-client/vql";
 import { flattenObject, renameKeys } from "./utils";
 
+const opPrefixes: Record<string, string> = {
+	add: "+",
+	update: "~",
+	remove: "-",
+	updateOneOrAdd: "?",
+	toggleOne: "^",
+	count: "#",
+	bulkAdd: "*",
+};
+
+const oneOps = new Set([
+	"findOne",
+	"updateOne",
+	"removeOne",
+]);
+
+const collectionOps = new Set([
+	"ensureCollection",
+	"issetCollection",
+	"removeCollection",
+]);
+
 export function convert_VQLR_to_VQLS(res: VQL_Query) {
 	let string = "";
 	if (!("d" in res)) {
@@ -10,17 +32,15 @@ export function convert_VQLR_to_VQLS(res: VQL_Query) {
 	const d = res.d;
 	const opName = Object.keys(d)[0];
 	const op = d[opName];
+
+	if (opName === "getCollections") return `${res.db} getCollections`;
+	if (collectionOps.has(opName)) return `${res.db} ${opName} ${op.collection}`;
+
 	let collection = op.collection;
-	const baseOp = opName.replace("One", "");
+	const baseOp = opName === "f" ? "findOne" : opName;
 
-	if (baseOp === "find") {
-	} else if (baseOp === "update") collection = "~" + collection;
-	else if (baseOp === "remove") collection = "-" + collection;
-	else if (baseOp === "add") collection = "+" + collection;
-	else if (opName === "updateOneOrAdd")
-		collection = "updateOneOrAdd " + collection;
-
-	if (opName.endsWith("One")) collection += "!";
+	if (opPrefixes[baseOp]) collection = opPrefixes[baseOp] + collection;
+	else if (oneOps.has(baseOp)) collection += "!";
 
 	delete op.collection;
 	renameKeys(op, "search", "s");
